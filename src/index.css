@@ -296,6 +296,15 @@ p {
   animation: flicker 0.5s steps(2) infinite;
 }
 
+.sprite-marker--road .sprite-marker__image {
+  width: clamp(22px, 5.5vw, 50px);
+}
+
+.sprite-marker--road .sprite-marker__label {
+  font-size: clamp(0.24rem, 0.75vw, 0.36rem);
+  padding: 1px 3px;
+}
+
 .sprite-marker__label {
   margin-top: 2px;
   padding: 2px 4px;

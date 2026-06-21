@@ -26,6 +26,21 @@ export interface SpriteEntry {
   projectId?: ProjectId
   /** Shown only in the Option 4D bad ending. */
   badEndingOnly?: boolean
+  /** Label shown on the map (defaults to displayLabel). */
+  mapLabel?: string
+  /** Compact sizing for road-level markers. */
+  size?: 'road'
+}
+
+const SPRITE_OVERRIDES: Partial<
+  Record<string, Pick<SpriteEntry, 'mapLabel' | 'x' | 'y' | 'size'>>
+> = {
+  damaged_crater_with_rubble_patch: {
+    mapLabel: 'Pothole',
+    x: 528,
+    y: 600,
+    size: 'road',
+  },
 }
 
 const SPRITE_IMAGES: Record<string, string> = {
@@ -49,15 +64,20 @@ const PROJECT_BY_SPRITE: Partial<Record<string, ProjectId>> = {
   collapsed_road_with_warning_sign: 'galleyHill',
 }
 
-export const SPRITES: SpriteEntry[] = spritePositions.sprites.map((entry) => ({
-  spriteName: entry.sprite_name,
-  displayLabel: entry.display_label,
-  x: entry.x,
-  y: entry.y,
-  image: SPRITE_IMAGES[entry.sprite_name],
-  projectId: PROJECT_BY_SPRITE[entry.sprite_name],
-  badEndingOnly: entry.sprite_name === 'pixelated_fortress_with_error_sign',
-}))
+export const SPRITES: SpriteEntry[] = spritePositions.sprites.map((entry) => {
+  const override = SPRITE_OVERRIDES[entry.sprite_name]
+  return {
+    spriteName: entry.sprite_name,
+    displayLabel: entry.display_label,
+    x: override?.x ?? entry.x,
+    y: override?.y ?? entry.y,
+    image: SPRITE_IMAGES[entry.sprite_name],
+    projectId: PROJECT_BY_SPRITE[entry.sprite_name],
+    badEndingOnly: entry.sprite_name === 'pixelated_fortress_with_error_sign',
+    mapLabel: override?.mapLabel,
+    size: override?.size,
+  }
+})
 
 export const SPRITE_BY_PROJECT = new Map<ProjectId, SpriteEntry>(
   SPRITES.filter((s) => s.projectId).map((s) => [s.projectId!, s]),

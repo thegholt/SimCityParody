@@ -62,7 +62,9 @@ export default function CityMap({
                 key={sprite.spriteName}
                 className={`sprite-marker${
                   active ? ' sprite-marker--active' : ' sprite-marker--inactive'
-                }${sprite.badEndingOnly ? ' sprite-marker--error' : ''}`}
+                }${sprite.badEndingOnly ? ' sprite-marker--error' : ''}${
+                  sprite.size === 'road' ? ' sprite-marker--road' : ''
+                }`}
                 style={spritePosition(sprite.x, sprite.y)}
                 data-sprite={sprite.spriteName}
                 data-project={sprite.projectId}
@@ -74,7 +76,9 @@ export default function CityMap({
                   alt={sprite.displayLabel}
                 />
                 {sprite.projectId && !divided ? (
-                  <span className="sprite-marker__label">{sprite.displayLabel}</span>
+                  <span className="sprite-marker__label">
+                    {sprite.mapLabel ?? sprite.displayLabel}
+                  </span>
                 ) : null}
               </div>
             )
