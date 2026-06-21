@@ -533,7 +533,15 @@ p {
 }
 
 .reveal-glitch {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
   animation: glitch 0.4s steps(2) infinite;
+}
+
+.reveal-glitch .modal-overlay {
+  position: absolute;
+  z-index: auto;
 }
 
 /* ---------- Results ---------- */
