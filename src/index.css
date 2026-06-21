@@ -155,6 +155,30 @@ p {
   letter-spacing: 0.04em;
 }
 
+.topbar__tagline--mobile {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .topbar__title {
+    display: none;
+  }
+
+  .topbar__tagline--full {
+    display: none;
+  }
+
+  .topbar__tagline--mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 0.52rem;
+    line-height: 1.5;
+    color: var(--budget);
+    text-align: left;
+  }
+}
+
 .budget-line {
   display: flex;
   justify-content: space-between;
@@ -342,6 +366,34 @@ p {
   backdrop-filter: blur(2px);
 }
 
+/* Sticky budget bar (mobile) */
+.sticky-budget {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 15;
+  padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(180deg, transparent 0%, rgba(8, 16, 8, 0.92) 24%);
+  pointer-events: none;
+}
+
+.sticky-budget__inner {
+  background: var(--navy-800);
+  border: 3px solid #000;
+  box-shadow:
+    inset 0 0 0 2px var(--forest),
+    0 -4px 0 0 #000;
+  padding: 10px 12px;
+  pointer-events: auto;
+}
+
+@media (max-width: 899px) {
+  .app {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* Residents */
 .citymap__residents {
   display: flex;
@@ -451,6 +503,26 @@ p {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.project-card__title-block {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-card__expand {
+  font-size: 0.55rem;
+  color: var(--muted);
+  flex-shrink: 0;
 }
 
 .project-card__sprite {
@@ -504,6 +576,33 @@ p {
 .project-card .pixel-btn {
   font-size: 0.6rem;
   padding: 10px;
+}
+
+@media (max-width: 899px) {
+  .project-card__expand {
+    display: inline-block;
+  }
+
+  .project-card:not(.project-card--expanded) .project-card__blurb {
+    display: none;
+  }
+
+  .project-card .pixel-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.62rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .project-card__head {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .project-card__expand {
+    display: none;
+  }
 }
 
 /* ---------- All funded banner ---------- */
@@ -863,6 +962,71 @@ p {
   }
   75% {
     transform: translate(-3px, -3px);
+  }
+}
+
+@media (max-width: 400px) {
+  .app {
+    padding: 6px;
+    padding-bottom: calc(82px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .topbar {
+    padding: 8px 10px;
+    border-width: 3px;
+  }
+
+  .topbar__logo {
+    font-size: 1.3rem;
+  }
+
+  .layout {
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .citymap {
+    padding: 4px;
+    border-width: 3px;
+    box-shadow:
+      inset 0 0 0 2px var(--forest),
+      4px 4px 0 0 #000;
+  }
+
+  .citymap__frame {
+    border-width: 1px;
+  }
+
+  .project-card {
+    padding: 8px;
+    border-width: 2px;
+    gap: 6px;
+  }
+
+  .project-card__sprite {
+    width: 44px;
+    height: 44px;
+  }
+
+  .sticky-budget {
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sticky-budget__inner {
+    padding: 8px 10px;
+    border-width: 2px;
+  }
+
+  .modal-overlay {
+    padding: 10px;
+  }
+
+  .modal-box {
+    padding: 16px;
+    border-width: 3px;
+    box-shadow:
+      inset 0 0 0 2px var(--navy-600),
+      6px 6px 0 0 #000;
   }
 }
 

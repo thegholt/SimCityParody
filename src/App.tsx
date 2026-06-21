@@ -5,8 +5,10 @@ import JimChoiceReveal from './components/JimChoiceReveal'
 import PixelButton from './components/PixelButton'
 import ProjectCard from './components/ProjectCard'
 import ResultsScreen from './components/ResultsScreen'
+import StickyBudgetBar from './components/StickyBudgetBar'
 import TopBar from './components/TopBar'
 import { COPY, PROJECTS, type ProjectId } from './data/projects'
+import { useMediaQuery } from './hooks/useMediaQuery'
 import {
   emptyFunded,
   isAllFunded,
@@ -23,6 +25,7 @@ export default function App() {
   const spent = useMemo(() => spentOf(funded), [funded])
   const remaining = useMemo(() => remainingOf(funded), [funded])
   const everythingFunded = useMemo(() => isAllFunded(funded), [funded])
+  const isMobile = useMediaQuery('(max-width: 899px)')
 
   const toggle = (id: ProjectId) => {
     setFunded((prev) => {
@@ -49,6 +52,7 @@ export default function App() {
             spent={spent}
             remaining={remaining}
             divided={phase === 'ending'}
+            showSpendOverlay={!isMobile}
           />
         </section>
 
@@ -98,6 +102,10 @@ export default function App() {
 
       {phase === 'reveal' ? (
         <JimChoiceReveal onConfirm={() => setPhase('ending')} />
+      ) : null}
+
+      {phase !== 'intro' && isMobile ? (
+        <StickyBudgetBar spent={spent} remaining={remaining} />
       ) : null}
     </div>
   )

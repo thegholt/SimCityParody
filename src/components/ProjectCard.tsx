@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { Project } from '../data/projects'
 import { SPRITE_BY_PROJECT } from '../data/sprites'
 import { formatMoney } from '../game/budget'
@@ -17,15 +18,24 @@ export default function ProjectCard({
   affordable,
   onToggle,
 }: ProjectCardProps) {
+  const [expanded, setExpanded] = useState(false)
   const disabled = !funded && !affordable
   const sprite = SPRITE_BY_PROJECT.get(project.id)
+
   return (
     <div
-      className={`project-card${funded ? ' project-card--funded' : ''}`}
+      className={`project-card${funded ? ' project-card--funded' : ''}${
+        expanded ? ' project-card--expanded' : ''
+      }`}
       data-testid={`project-${project.id}`}
       data-funded={funded}
     >
-      <div className="project-card__head">
+      <button
+        type="button"
+        className="project-card__head"
+        aria-expanded={expanded}
+        onClick={() => setExpanded((open) => !open)}
+      >
         {sprite ? (
           <img
             className="project-card__sprite"
@@ -38,7 +48,7 @@ export default function ProjectCard({
             {project.glyph}
           </span>
         )}
-        <div>
+        <div className="project-card__title-block">
           <h3 className="project-card__name">{project.name}</h3>
           <span className="project-card__cost">{formatMoney(project.cost)}</span>
         </div>
@@ -47,7 +57,10 @@ export default function ProjectCard({
             ✓
           </span>
         ) : null}
-      </div>
+        <span className="project-card__expand" aria-hidden="true">
+          {expanded ? '▲' : '▼'}
+        </span>
+      </button>
 
       <p className="project-card__blurb">
         {funded ? project.fundedSummary : project.blurb}

@@ -11,7 +11,9 @@ function startGame() {
 function fundEveryProject() {
   for (const project of PROJECTS) {
     const card = screen.getByTestId(`project-${project.id}`)
-    fireEvent.click(within(card).getByRole('button'))
+    fireEvent.click(
+      within(card).getByRole('button', { name: /Fund it|Funded — Undo/ }),
+    )
   }
 }
 
@@ -33,7 +35,7 @@ describe('<App /> — JimCity flow', () => {
   it('updates the budget when a project is funded', () => {
     startGame()
     const card = screen.getByTestId('project-galleyHill')
-    fireEvent.click(within(card).getByRole('button'))
+    fireEvent.click(within(card).getByRole('button', { name: 'Fund it' }))
     expect(screen.getByTestId('spent')).toHaveTextContent('£50M')
     expect(screen.getByTestId('remaining')).toHaveTextContent('£85.9M')
     expect(card).toHaveAttribute('data-funded', 'true')

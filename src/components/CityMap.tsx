@@ -10,6 +10,8 @@ interface CityMapProps {
   remaining: number
   /** When true, Option 4D has been chosen: glitch, darken and split the city. */
   divided?: boolean
+  /** Show the budget overlay on the map (desktop). */
+  showSpendOverlay?: boolean
 }
 
 const RESIDENT_COUNT = 12
@@ -26,6 +28,7 @@ export default function CityMap({
   spent,
   remaining,
   divided = false,
+  showSpendOverlay = true,
 }: CityMapProps) {
   const fundedCount = Object.values(funded).filter(Boolean).length
   const happyCount = divided
@@ -85,7 +88,9 @@ export default function CityMap({
           })}
         </div>
 
-        <SpendOverlay spent={spent} remaining={remaining} />
+        {showSpendOverlay ? (
+          <SpendOverlay spent={spent} remaining={remaining} />
+        ) : null}
 
         {divided ? (
           <div className="citymap__split-art" data-testid="dartford-split-art">
