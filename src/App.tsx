@@ -46,12 +46,6 @@ export default function App() {
       <main className="layout">
         <section className="layout__map">
           <CityMap funded={funded} divided={phase === 'ending'} />
-          {phase === 'ending' ? (
-            <JimPortrait
-              caption={COPY.resultsPortraitCaption}
-              className="jim-portrait--page jim-portrait--ending"
-            />
-          ) : null}
         </section>
 
         <section className="layout__panel">
@@ -93,6 +87,13 @@ export default function App() {
           )}
         </section>
       </main>
+
+      {phase === 'ending' ? (
+        <JimPortrait
+          caption={COPY.resultsPortraitCaption}
+          className="jim-portrait--ending"
+        />
+      ) : null}
 
       {phase === 'intro' ? (
         <IntroModal onStart={() => setPhase('budget')} />

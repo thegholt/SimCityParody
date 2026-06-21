@@ -608,13 +608,22 @@ p {
   width: min(280px, 42vw);
 }
 
+.jim-portrait--ending {
+  position: fixed;
+  right: clamp(12px, 4vw, 48px);
+  bottom: clamp(12px, 4vh, 36px);
+  left: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
 .jim-portrait--ending .jim-portrait__caption {
   color: var(--bad);
   font-size: 0.58rem;
 }
 
 .jim-portrait--ending .jim-portrait__sprite {
-  width: min(220px, 46vw);
+  width: min(220px, 34vw);
 }
 
 .reveal-glitch .modal-actions {

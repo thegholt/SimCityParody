@@ -129,7 +129,6 @@ export const COPY = {
   budgetButton: "Now See Jim's Choice",
   revealBody:
     'Instead of all that, Jim is currently spending the whole £135.9M on Option 4D.',
-  revealPortraitCaption: "That's Jim.",
   revealButton: 'Spend It All on Option 4D',
   resultsPortraitCaption: 'Jim chose Option 4D.',
   endingMessage: '£135.9M spent. Dartford divided. Nothing fixed.',
