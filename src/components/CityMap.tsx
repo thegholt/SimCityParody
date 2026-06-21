@@ -28,6 +28,7 @@ const LAYOUT: Cell[][] = [
 
 const PROJECT_BY_ID = new Map(PROJECTS.map((p) => [p.id, p]))
 const RESIDENT_COUNT = 12
+const DARTFORD_SPLIT_URL = `${import.meta.env.BASE_URL}dartford-split.png`
 
 function FacilityCell({
   id,
@@ -105,8 +106,12 @@ export default function CityMap({ funded, divided = false }: CityMapProps) {
         </div>
 
         {divided ? (
-          <div className="citymap__split" aria-hidden="true">
-            <span className="citymap__split-label">DARTFORD SPLIT</span>
+          <div className="citymap__split-art" data-testid="dartford-split-art">
+            <img
+              className="citymap__split-image"
+              src={DARTFORD_SPLIT_URL}
+              alt="Dartford split in half along the A2"
+            />
           </div>
         ) : null}
       </div>

@@ -73,6 +73,7 @@ describe('<App /> — JimCity flow', () => {
       'data-divided',
       'true',
     )
+    expect(screen.getByTestId('dartford-split-art')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: COPY.rejectButton })).toHaveAttribute(
       'href',
       REJECT_URL,
