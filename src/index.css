@@ -271,22 +271,7 @@ p {
   transition: filter 0.2s steps(4);
 }
 
-.sprite-marker__backdrop {
-  position: absolute;
-  top: 42%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: clamp(58px, 14vw, 132px);
-  height: clamp(46px, 11vw, 104px);
-  background: #3a7a42;
-  border: 2px solid #2a5a32;
-  z-index: 0;
-  opacity: 1;
-}
-
 .sprite-marker__image {
-  position: relative;
-  z-index: 1;
   display: block;
   width: clamp(48px, 12vw, 120px);
   height: auto;
@@ -294,16 +279,10 @@ p {
   image-rendering: crisp-edges;
   filter: drop-shadow(2px 2px 0 #000);
   background: transparent;
-  opacity: 1;
 }
 
 .sprite-marker--inactive .sprite-marker__image {
   filter: grayscale(0.85) brightness(0.55) drop-shadow(2px 2px 0 #000);
-}
-
-.sprite-marker--inactive .sprite-marker__backdrop {
-  background: #2f5a36;
-  border-color: #1f3f26;
 }
 
 .sprite-marker--active .sprite-marker__image {
@@ -318,13 +297,11 @@ p {
 }
 
 .sprite-marker__label {
-  position: relative;
-  z-index: 1;
   margin-top: 2px;
   padding: 2px 4px;
   font-size: clamp(0.28rem, 0.9vw, 0.42rem);
   color: var(--ink);
-  background: #0a140a;
+  background: rgba(8, 16, 8, 0.82);
   border: 2px solid #000;
   white-space: nowrap;
   text-shadow: 1px 1px 0 #000;
@@ -378,11 +355,6 @@ p {
 
 .citymap--divided .sprite-marker:not(.sprite-marker--error) .sprite-marker__image {
   filter: grayscale(1) brightness(0.4) drop-shadow(2px 2px 0 #000);
-}
-
-.citymap--divided .sprite-marker:not(.sprite-marker--error) .sprite-marker__backdrop {
-  background: #1a2e1e;
-  border-color: #0f1a12;
 }
 
 .citymap__split-art {

@@ -68,7 +68,6 @@ export default function CityMap({
                 data-project={sprite.projectId}
                 data-active={active}
               >
-                <span className="sprite-marker__backdrop" aria-hidden="true" />
                 <img
                   className="sprite-marker__image"
                   src={sprite.image}
