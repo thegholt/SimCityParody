@@ -61,8 +61,8 @@ describe('<App /> — JimCity flow', () => {
 
     const results = screen.getByTestId('results-screen')
     expect(results).toBeInTheDocument()
-    expect(within(results).getByTestId('jim-portrait')).toBeInTheDocument()
-    expect(within(results).getByText(COPY.resultsPortraitCaption)).toBeInTheDocument()
+    expect(screen.getByTestId('jim-portrait')).toBeInTheDocument()
+    expect(screen.getByText(COPY.resultsPortraitCaption)).toBeInTheDocument()
     expect(within(results).getByText('GP Hubs Built')).toBeInTheDocument()
     expect(within(results).getByText('Disappointed Constituents')).toBeInTheDocument()
     expect(within(results).getByText('75,426')).toBeInTheDocument()

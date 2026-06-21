@@ -13,6 +13,7 @@ interface JimChoiceRevealProps {
 export default function JimChoiceReveal({ onConfirm }: JimChoiceRevealProps) {
   return (
     <div className="reveal-glitch" data-testid="jim-reveal">
+      <JimPortrait caption={COPY.revealPortraitCaption} className="jim-portrait--page jim-portrait--reveal" />
       <ConfirmModal
         title="⚠ OPTION 4D ⚠"
         tone="danger"
@@ -22,7 +23,6 @@ export default function JimChoiceReveal({ onConfirm }: JimChoiceRevealProps) {
           </PixelButton>
         }
       >
-        <JimPortrait caption={COPY.revealPortraitCaption} className="jim-portrait--reveal" />
         <p className="reveal-body">{COPY.revealBody}</p>
       </ConfirmModal>
     </div>

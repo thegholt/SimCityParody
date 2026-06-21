@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import CityMap from './components/CityMap'
 import IntroModal from './components/IntroModal'
 import JimChoiceReveal from './components/JimChoiceReveal'
+import JimPortrait from './components/JimPortrait'
 import PixelButton from './components/PixelButton'
 import ProjectCard from './components/ProjectCard'
 import ResultsScreen from './components/ResultsScreen'
@@ -45,6 +46,12 @@ export default function App() {
       <main className="layout">
         <section className="layout__map">
           <CityMap funded={funded} divided={phase === 'ending'} />
+          {phase === 'ending' ? (
+            <JimPortrait
+              caption={COPY.resultsPortraitCaption}
+              className="jim-portrait--page jim-portrait--ending"
+            />
+          ) : null}
         </section>
 
         <section className="layout__panel">
