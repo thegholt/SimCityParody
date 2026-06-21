@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/press-start-2p':
+        specifier: ^5.2.7
+        version: 5.2.7
       react:
         specifier: ^19.2.7
         version: 19.2.7
@@ -248,6 +251,9 @@ packages:
     peerDependenciesMeta:
       '@noble/hashes':
         optional: true
+
+  '@fontsource/press-start-2p@5.2.7':
+    resolution: {integrity: sha512-ezSxYRchANoteja170ZHh2Tt4oejmVEvX42VFPOVVvERSZ68pcuZFjbhHfrK/sNjYmaGg656y7B3431ojO9PCQ==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -1514,6 +1520,8 @@ snapshots:
       levn: 0.4.1
 
   '@exodus/bytes@1.15.1': {}
+
+  '@fontsource/press-start-2p@5.2.7': {}
 
   '@humanfs/core@0.19.2':
     dependencies:

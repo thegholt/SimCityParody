@@ -1,44 +1,99 @@
-import { useEffect, useState } from 'react'
-import Board from './components/Board'
-import StatsBar from './components/StatsBar'
-import Toolbar from './components/Toolbar'
-import { createGame, placeTile, tick } from './game/engine'
-import type { TileType } from './game/types'
-
-const TICK_MS = 2000
+import { useMemo, useState } from 'react'
+import CityMap from './components/CityMap'
+import IntroModal from './components/IntroModal'
+import JimChoiceReveal from './components/JimChoiceReveal'
+import PixelButton from './components/PixelButton'
+import ProjectCard from './components/ProjectCard'
+import ResultsScreen from './components/ResultsScreen'
+import TopBar from './components/TopBar'
+import { COPY, PROJECTS, type ProjectId } from './data/projects'
+import {
+  emptyFunded,
+  isAllFunded,
+  remaining as remainingOf,
+  spent as spentOf,
+  type FundedMap,
+  type Phase,
+} from './game/budget'
 
 export default function App() {
-  const [state, setState] = useState(() => createGame())
-  const [tool, setTool] = useState<TileType>('residential')
+  const [phase, setPhase] = useState<Phase>('intro')
+  const [funded, setFunded] = useState<FundedMap>(() => emptyFunded())
 
-  useEffect(() => {
-    const id = setInterval(() => setState((s) => tick(s)), TICK_MS)
-    return () => clearInterval(id)
-  }, [])
+  const spent = useMemo(() => spentOf(funded), [funded])
+  const remaining = useMemo(() => remainingOf(funded), [funded])
+  const everythingFunded = useMemo(() => isAllFunded(funded), [funded])
 
-  const handleTileClick = (index: number) => {
-    setState((s) => placeTile(s, index, tool))
+  const toggle = (id: ProjectId) => {
+    setFunded((prev) => {
+      if (prev[id]) return { ...prev, [id]: false }
+      const project = PROJECTS.find((p) => p.id === id)!
+      if (remainingOf(prev) < project.cost) return prev
+      return { ...prev, [id]: true }
+    })
+  }
+
+  const restart = () => {
+    setFunded(emptyFunded())
+    setPhase('intro')
   }
 
   return (
-    <div className="app">
-      <header className="header">
-        <h1>
-          <span aria-hidden="true">🏙️ </span>SimCityParody
-        </h1>
-        <p className="tagline">
-          Build the tiniest metropolis. Mind the budget, mayor.
-        </p>
-      </header>
+    <div className={`app${phase === 'ending' ? ' app--divided' : ''}`}>
+      <TopBar spent={spent} remaining={remaining} />
 
-      <StatsBar state={state} />
-      <Toolbar selected={tool} onSelect={setTool} />
-      <Board state={state} onTileClick={handleTileClick} />
+      <main className="layout">
+        <section className="layout__map">
+          <CityMap funded={funded} divided={phase === 'ending'} />
+        </section>
 
-      <footer className="footer">
-        Selected tool: <strong>{tool}</strong> · Click a tile to build · Income
-        accrues every {TICK_MS / 1000}s
-      </footer>
+        <section className="layout__panel">
+          {phase === 'ending' ? (
+            <ResultsScreen onPlayAgain={restart} />
+          ) : (
+            <>
+              <div className="panel-head">
+                <h2>What Dartford Could Have</h2>
+                <p className="panel-sub">
+                  Fund every project to see what £135.9M could deliver.
+                </p>
+              </div>
+
+              <div className="project-list">
+                {PROJECTS.map((project) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    funded={funded[project.id]}
+                    affordable={remaining >= project.cost}
+                    onToggle={toggle}
+                  />
+                ))}
+              </div>
+
+              {everythingFunded ? (
+                <div className="all-funded" data-testid="all-funded">
+                  <p className="all-funded__msg">{COPY.budgetAllSelected}</p>
+                  <PixelButton
+                    variant="danger"
+                    onClick={() => setPhase('reveal')}
+                  >
+                    {COPY.budgetButton}
+                  </PixelButton>
+                </div>
+              ) : null}
+            </>
+          )}
+        </section>
+      </main>
+
+      {phase === 'intro' ? (
+        <IntroModal onStart={() => setPhase('budget')} />
+      ) : null}
+
+      {phase === 'reveal' ? (
+        <JimChoiceReveal onConfirm={() => setPhase('ending')} />
+      ) : null}
     </div>
   )
 }

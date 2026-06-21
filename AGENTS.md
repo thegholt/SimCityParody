@@ -2,9 +2,10 @@
 
 ## Cursor Cloud specific instructions
 
-SimCityParody is a single front-end app: **Vite + React + TypeScript** (package
-manager: **pnpm**, lockfile `pnpm-lock.yaml`). There is no backend, database, or
-external service — everything runs client-side.
+JimCity (repo name `SimCityParody`) is a single front-end app: **Vite + React +
+TypeScript** (package manager: **pnpm**, lockfile `pnpm-lock.yaml`). There is no
+backend, database, or external service — everything runs client-side. All game
+content (projects, budget, copy) is centralised in `src/data/projects.ts`.
 
 Standard commands live in `package.json` (`dev`, `build`, `lint`, `test`); see
 the README table. Notes that aren't obvious from those files:
