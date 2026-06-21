@@ -1,0 +1,64 @@
+{
+  "map_width": 1403,
+  "map_height": 1121,
+  "coordinate_system": "pixels from top-left",
+  "anchor_definition": "x,y are centre anchor points for each sprite",
+  "sprites": [
+    {
+      "sprite_name": "collapsed_road_with_warning_sign",
+      "display_label": "COLLAPSED ROAD",
+      "x": 329,
+      "y": 280,
+      "anchor": "center"
+    },
+    {
+      "sprite_name": "pixelated_fortress_with_error_sign",
+      "display_label": "ERROR BUILDING",
+      "x": 1129,
+      "y": 241,
+      "anchor": "center"
+    },
+    {
+      "sprite_name": "pixel_art_storefront_row_with_cafes",
+      "display_label": "SHOPS / CAFES",
+      "x": 217,
+      "y": 526,
+      "anchor": "center"
+    },
+    {
+      "sprite_name": "damaged_crater_with_rubble_patch",
+      "display_label": "RUBBLE / POTHOLES",
+      "x": 462,
+      "y": 627,
+      "anchor": "center"
+    },
+    {
+      "sprite_name": "retro_hospital_with_pixel_characters",
+      "display_label": "GP / HOSPITAL",
+      "x": 701,
+      "y": 700,
+      "anchor": "center"
+    },
+    {
+      "sprite_name": "pixel_art_police_station_building",
+      "display_label": "POLICE STATION",
+      "x": 1080,
+      "y": 577,
+      "anchor": "center"
+    },
+    {
+      "sprite_name": "pixel_art_bus_station_shelter",
+      "display_label": "BUS STATION",
+      "x": 1122,
+      "y": 790,
+      "anchor": "center"
+    },
+    {
+      "sprite_name": "retro_pixel_art_city_bus",
+      "display_label": "BUS",
+      "x": 1290,
+      "y": 823,
+      "anchor": "center"
+    }
+  ]
+}
