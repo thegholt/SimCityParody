@@ -137,4 +137,4 @@ export const COPY = {
 
 /** Where to point the "Tell Jim" call to action. */
 export const REJECT_URL =
-  'https://www.dartford.gov.uk/'
+  'https://www.dartfordconservatives.org.uk/dont-let-them-divide-dartford-only-you-can-stop-them'
