@@ -36,10 +36,7 @@ export default function App() {
     })
   }
 
-  const restart = () => {
-    setFunded(emptyFunded())
-    setPhase('intro')
-  }
+  const showBudgetBar = phase !== 'ending'
 
   return (
     <div className={`app${phase === 'ending' ? ' app--divided' : ''}`}>
@@ -52,13 +49,13 @@ export default function App() {
             spent={spent}
             remaining={remaining}
             divided={phase === 'ending'}
-            showSpendOverlay={!isMobile}
+            showSpendOverlay={showBudgetBar && !isMobile}
           />
         </section>
 
         <section className="layout__panel">
           {phase === 'ending' ? (
-            <ResultsScreen onPlayAgain={restart} />
+            <ResultsScreen />
           ) : (
             <>
               <div className="panel-head">
@@ -104,7 +101,7 @@ export default function App() {
         <JimChoiceReveal onConfirm={() => setPhase('ending')} />
       ) : null}
 
-      {phase !== 'intro' && isMobile ? (
+      {showBudgetBar && isMobile ? (
         <StickyBudgetBar spent={spent} remaining={remaining} />
       ) : null}
     </div>

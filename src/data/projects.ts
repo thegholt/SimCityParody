@@ -134,8 +134,7 @@ export const COPY = {
   splitOverlayMessage: 'Stop the Split, Stop Option 4D, Stop Jim.',
   splitOverlayCallToAction: 'Save Dartford',
   endingMessage: '£135.9M spent. Dartford divided. Nothing fixed.',
-  playAgain: 'Play Again',
-  rejectButton: 'Tell Jim: Reject Option 4D',
+  rejectButton: 'Say No: Sign our Petition',
 }
 
 /** Where to point the "Tell Jim" call to action. */

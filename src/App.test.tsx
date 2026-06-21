@@ -62,6 +62,7 @@ describe('<App /> — JimCity flow', () => {
     const results = screen.getByTestId('results-screen')
     expect(results).toBeInTheDocument()
     expect(within(results).getByText('GP Hubs Built')).toBeInTheDocument()
+    expect(within(results).queryByText('Galley Hill Fixed')).not.toBeInTheDocument()
     expect(within(results).getByText('Disappointed Constituents')).toBeInTheDocument()
     expect(within(results).getByText('75,426')).toBeInTheDocument()
     expect(screen.getByTestId('ending-message')).toHaveTextContent(
@@ -82,16 +83,6 @@ describe('<App /> — JimCity flow', () => {
       'href',
       REJECT_URL,
     )
-  })
-
-  it('can play again from the results screen', () => {
-    startGame()
-    fundEveryProject()
-    fireEvent.click(screen.getByRole('button', { name: COPY.budgetButton }))
-    fireEvent.click(screen.getByRole('button', { name: COPY.revealButton }))
-    fireEvent.click(screen.getByRole('button', { name: COPY.playAgain }))
-    expect(
-      screen.getByRole('heading', { name: COPY.introTitle }),
-    ).toBeInTheDocument()
+    expect(screen.queryByTestId('total-budget')).not.toBeInTheDocument()
   })
 })
