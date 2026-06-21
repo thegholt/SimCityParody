@@ -376,6 +376,13 @@ p {
   box-shadow: 4px 4px 0 0 #000;
 }
 
+.citymap__split-call {
+  display: block;
+  margin-top: 8px;
+  font-size: clamp(0.62rem, 1.75vw, 0.92rem);
+  color: var(--budget);
+}
+
 .citymap__split-image {
   display: block;
   width: 100%;

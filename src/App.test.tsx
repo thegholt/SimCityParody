@@ -76,6 +76,9 @@ describe('<App /> — JimCity flow', () => {
     expect(screen.getByTestId('split-overlay-message')).toHaveTextContent(
       COPY.splitOverlayMessage,
     )
+    expect(screen.getByTestId('split-overlay-message')).toHaveTextContent(
+      COPY.splitOverlayCallToAction,
+    )
     expect(screen.getByRole('link', { name: COPY.rejectButton })).toHaveAttribute(
       'href',
       REJECT_URL,

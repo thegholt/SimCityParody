@@ -114,6 +114,7 @@ export default function CityMap({ funded, divided = false }: CityMapProps) {
             />
             <p className="citymap__split-message" data-testid="split-overlay-message">
               {COPY.splitOverlayMessage}
+              <span className="citymap__split-call">{COPY.splitOverlayCallToAction}</span>
             </p>
           </div>
         ) : null}
