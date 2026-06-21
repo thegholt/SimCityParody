@@ -544,7 +544,50 @@ p {
 }
 
 .reveal-glitch .modal-box {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 59, 78, 0.26), transparent 52%),
+    linear-gradient(180deg, #1b1028 0%, #120716 100%);
+  border-width: 6px;
+  box-shadow:
+    inset 0 0 0 4px var(--bad-dim),
+    inset 0 0 34px rgba(255, 59, 78, 0.28),
+    14px 14px 0 0 #000,
+    0 0 0 8px rgba(179, 18, 42, 0.34),
+    0 0 36px rgba(255, 59, 78, 0.44);
+  max-width: 720px;
+  padding: clamp(30px, 5vw, 52px);
   animation: glitch 0.4s steps(2) infinite;
+}
+
+.reveal-glitch .modal-title {
+  font-size: clamp(1.3rem, 3.2vw, 2rem);
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+  text-shadow:
+    4px 4px 0 #000,
+    0 0 18px rgba(255, 59, 78, 0.85);
+}
+
+.reveal-glitch .reveal-body {
+  color: #ffe0e4;
+  font-size: clamp(0.72rem, 1.6vw, 0.9rem);
+  margin-inline: auto;
+  max-width: 590px;
+}
+
+.reveal-glitch .modal-actions {
+  margin-top: 30px;
+}
+
+.reveal-glitch .pixel-btn--danger {
+  border: 3px solid #ffd2d6;
+  box-shadow:
+    inset -5px -5px 0 0 rgba(0, 0, 0, 0.38),
+    inset 5px 5px 0 0 rgba(255, 255, 255, 0.22),
+    6px 6px 0 0 #000,
+    0 0 18px rgba(255, 59, 78, 0.64);
+  font-size: clamp(0.78rem, 1.5vw, 0.95rem);
+  padding: 16px 22px;
 }
 
 /* ---------- Results ---------- */
