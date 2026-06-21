@@ -536,12 +536,15 @@ p {
   position: fixed;
   inset: 0;
   z-index: 20;
-  animation: glitch 0.4s steps(2) infinite;
 }
 
 .reveal-glitch .modal-overlay {
   position: absolute;
   z-index: auto;
+}
+
+.reveal-glitch .modal-box {
+  animation: glitch 0.4s steps(2) infinite;
 }
 
 /* ---------- Results ---------- */
@@ -660,7 +663,7 @@ p {
 
 @media (prefers-reduced-motion: reduce) {
   .app--divided,
-  .reveal-glitch,
+  .reveal-glitch .modal-box,
   .citymap--divided .citymap__grid,
   .citymap__split::before,
   .modal-box--danger .modal-title,
