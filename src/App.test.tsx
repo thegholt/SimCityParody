@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import App from './App'
-import { COPY, PROJECTS } from './data/projects'
+import { COPY, PROJECTS, REJECT_URL } from './data/projects'
 
 function startGame() {
   render(<App />)
@@ -68,6 +68,10 @@ describe('<App /> — JimCity flow', () => {
     expect(screen.getByTestId('city-map')).toHaveAttribute(
       'data-divided',
       'true',
+    )
+    expect(screen.getByRole('link', { name: COPY.rejectButton })).toHaveAttribute(
+      'href',
+      REJECT_URL,
     )
   })
 
