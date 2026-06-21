@@ -54,11 +54,14 @@ describe('<App /> — JimCity flow', () => {
 
     fireEvent.click(screen.getByRole('button', { name: COPY.budgetButton }))
     expect(screen.getByTestId('jim-reveal')).toBeInTheDocument()
+    expect(screen.getByTestId('jim-portrait')).toBeInTheDocument()
 
     fireEvent.click(screen.getByRole('button', { name: COPY.revealButton }))
 
     const results = screen.getByTestId('results-screen')
     expect(results).toBeInTheDocument()
+    expect(screen.getByTestId('jim-portrait')).toBeInTheDocument()
+    expect(screen.getByText(COPY.resultsPortraitCaption)).toBeInTheDocument()
     expect(within(results).getByText('GP Hubs Built')).toBeInTheDocument()
     expect(within(results).getByText('Disappointed Constituents')).toBeInTheDocument()
     expect(within(results).getByText('75,426')).toBeInTheDocument()
@@ -68,6 +71,13 @@ describe('<App /> — JimCity flow', () => {
     expect(screen.getByTestId('city-map')).toHaveAttribute(
       'data-divided',
       'true',
+    )
+    expect(screen.getByTestId('dartford-split-art')).toBeInTheDocument()
+    expect(screen.getByTestId('split-overlay-message')).toHaveTextContent(
+      COPY.splitOverlayMessage,
+    )
+    expect(screen.getByTestId('split-overlay-message')).toHaveTextContent(
+      COPY.splitOverlayCallToAction,
     )
     expect(screen.getByRole('link', { name: COPY.rejectButton })).toHaveAttribute(
       'href',

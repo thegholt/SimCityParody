@@ -10,6 +10,7 @@ export default function IntroModal({ onStart }: IntroModalProps) {
   return (
     <ConfirmModal
       title={COPY.introTitle}
+      boxClassName="modal-box--intro"
       actions={
         <PixelButton variant="primary" onClick={onStart}>
           {COPY.introButton}

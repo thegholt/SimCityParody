@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
+    "prepare:jim": "python3 scripts/prepare-jim-asset.py",
     "test": "vitest run",
     "test:watch": "vitest"
   },

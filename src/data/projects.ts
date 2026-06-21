@@ -130,6 +130,9 @@ export const COPY = {
   revealBody:
     'Instead of all that, Jim is currently spending the whole £135.9M on Option 4D.',
   revealButton: 'Spend It All on Option 4D',
+  resultsPortraitCaption: 'Jim chose Option 4D.',
+  splitOverlayMessage: 'Stop the Split, Stop Option 4D, Stop Jim.',
+  splitOverlayCallToAction: 'Save Dartford',
   endingMessage: '£135.9M spent. Dartford divided. Nothing fixed.',
   playAgain: 'Play Again',
   rejectButton: 'Tell Jim: Reject Option 4D',

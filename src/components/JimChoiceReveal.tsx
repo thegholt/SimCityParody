@@ -1,5 +1,6 @@
 import { COPY } from '../data/projects'
 import ConfirmModal from './ConfirmModal'
+import JimPortrait from './JimPortrait'
 import PixelButton from './PixelButton'
 
 interface JimChoiceRevealProps {
@@ -12,6 +13,7 @@ interface JimChoiceRevealProps {
 export default function JimChoiceReveal({ onConfirm }: JimChoiceRevealProps) {
   return (
     <div className="reveal-glitch" data-testid="jim-reveal">
+      <JimPortrait className="jim-portrait--page jim-portrait--reveal" />
       <ConfirmModal
         title="⚠ OPTION 4D ⚠"
         tone="danger"

@@ -6,6 +6,8 @@ interface ConfirmModalProps {
   children: ReactNode
   /** Extra class for theming (e.g. danger glitch styling). */
   tone?: 'default' | 'danger'
+  /** Extra class on the modal box (e.g. intro sizing). */
+  boxClassName?: string
   /** Footer action buttons. */
   actions?: ReactNode
 }
@@ -18,11 +20,16 @@ export default function ConfirmModal({
   title,
   children,
   tone = 'default',
+  boxClassName,
   actions,
 }: ConfirmModalProps) {
   return (
     <div className="modal-overlay" role="dialog" aria-modal="true" aria-label={title}>
-      <div className={`modal-box modal-box--${tone}`}>
+      <div
+        className={['modal-box', `modal-box--${tone}`, boxClassName]
+          .filter(Boolean)
+          .join(' ')}
+      >
         <h2 className="modal-title">{title}</h2>
         <div className="modal-body">{children}</div>
         {actions ? <div className="modal-actions">{actions}</div> : null}

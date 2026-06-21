@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import CityMap from './components/CityMap'
 import IntroModal from './components/IntroModal'
 import JimChoiceReveal from './components/JimChoiceReveal'
+import JimPortrait from './components/JimPortrait'
 import PixelButton from './components/PixelButton'
 import ProjectCard from './components/ProjectCard'
 import ResultsScreen from './components/ResultsScreen'
@@ -86,6 +87,13 @@ export default function App() {
           )}
         </section>
       </main>
+
+      {phase === 'ending' ? (
+        <JimPortrait
+          caption={COPY.resultsPortraitCaption}
+          className="jim-portrait--ending"
+        />
+      ) : null}
 
       {phase === 'intro' ? (
         <IntroModal onStart={() => setPhase('budget')} />

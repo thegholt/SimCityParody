@@ -1,4 +1,5 @@
-import { PROJECTS, type ProjectId } from '../data/projects'
+import dartfordSplit from '../assets/dartford-split.png'
+import { COPY, PROJECTS, type ProjectId } from '../data/projects'
 import type { FundedMap } from '../game/budget'
 
 interface CityMapProps {
@@ -105,23 +106,33 @@ export default function CityMap({ funded, divided = false }: CityMapProps) {
         </div>
 
         {divided ? (
-          <div className="citymap__split" aria-hidden="true">
-            <span className="citymap__split-label">DARTFORD SPLIT</span>
+          <div className="citymap__split-art" data-testid="dartford-split-art">
+            <img
+              className="citymap__split-image"
+              src={dartfordSplit}
+              alt="Dartford split in half along the A2"
+            />
+            <p className="citymap__split-message" data-testid="split-overlay-message">
+              {COPY.splitOverlayMessage}
+              <span className="citymap__split-call">{COPY.splitOverlayCallToAction}</span>
+            </p>
           </div>
         ) : null}
       </div>
 
-      <div className="citymap__residents" aria-label="constituents mood">
-        {Array.from({ length: RESIDENT_COUNT }).map((_, i) => (
-          <span
-            key={i}
-            className={`resident${i < happyCount ? ' resident--happy' : ' resident--sad'}`}
-            aria-hidden="true"
-          >
-            {divided ? '😠' : i < happyCount ? '🙂' : '😐'}
-          </span>
-        ))}
-      </div>
+      {!divided ? (
+        <div className="citymap__residents" aria-label="constituents mood">
+          {Array.from({ length: RESIDENT_COUNT }).map((_, i) => (
+            <span
+              key={i}
+              className={`resident${i < happyCount ? ' resident--happy' : ' resident--sad'}`}
+              aria-hidden="true"
+            >
+              {i < happyCount ? '🙂' : '😐'}
+            </span>
+          ))}
+        </div>
+      ) : null}
     </div>
   )
 }
