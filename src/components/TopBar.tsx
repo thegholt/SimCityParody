@@ -7,7 +7,7 @@ export default function TopBar() {
         </span>
         <div className="topbar__titles">
           <span className="topbar__title">JimCity</span>
-          <span className="topbar__tagline">Jim's budget for Dartford</span>
+          <span className="topbar__tagline">Your Labour MP's budget for Dartford</span>
         </div>
       </div>
     </header>
