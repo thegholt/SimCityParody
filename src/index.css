@@ -278,6 +278,7 @@ p {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   filter: drop-shadow(2px 2px 0 #000);
+  background: transparent;
 }
 
 .sprite-marker--inactive .sprite-marker__image {
@@ -445,13 +446,15 @@ p {
 }
 
 .project-card__sprite {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
+  object-position: center;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   filter: drop-shadow(2px 2px 0 #000);
   flex-shrink: 0;
+  background: transparent;
 }
 
 .project-card--funded .project-card__sprite {
