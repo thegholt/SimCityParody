@@ -73,6 +73,9 @@ describe('<App /> — JimCity flow', () => {
       'true',
     )
     expect(screen.getByTestId('dartford-split-art')).toBeInTheDocument()
+    expect(screen.getByTestId('split-overlay-message')).toHaveTextContent(
+      COPY.splitOverlayMessage,
+    )
     expect(screen.getByRole('link', { name: COPY.rejectButton })).toHaveAttribute(
       'href',
       REJECT_URL,
