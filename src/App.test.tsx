@@ -54,11 +54,15 @@ describe('<App /> — JimCity flow', () => {
 
     fireEvent.click(screen.getByRole('button', { name: COPY.budgetButton }))
     expect(screen.getByTestId('jim-reveal')).toBeInTheDocument()
+    expect(screen.getByTestId('jim-portrait')).toBeInTheDocument()
+    expect(screen.getByText(COPY.revealPortraitCaption)).toBeInTheDocument()
 
     fireEvent.click(screen.getByRole('button', { name: COPY.revealButton }))
 
     const results = screen.getByTestId('results-screen')
     expect(results).toBeInTheDocument()
+    expect(within(results).getByTestId('jim-portrait')).toBeInTheDocument()
+    expect(within(results).getByText(COPY.resultsPortraitCaption)).toBeInTheDocument()
     expect(within(results).getByText('GP Hubs Built')).toBeInTheDocument()
     expect(within(results).getByText('Disappointed Constituents')).toBeInTheDocument()
     expect(within(results).getByText('75,426')).toBeInTheDocument()

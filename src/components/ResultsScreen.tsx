@@ -4,6 +4,7 @@ import {
   PROJECTS,
   REJECT_URL,
 } from '../data/projects'
+import JimPortrait from './JimPortrait'
 import PixelButton from './PixelButton'
 
 interface ResultsScreenProps {
@@ -23,6 +24,8 @@ export default function ResultsScreen({ onPlayAgain }: ResultsScreenProps) {
   return (
     <div className="results" data-testid="results-screen">
       <h2 className="results__title">OPTION 4D — FINAL RESULTS</h2>
+
+      <JimPortrait caption={COPY.resultsPortraitCaption} className="jim-portrait--results" />
 
       <dl className="results__grid">
         {rows.map((row) => (

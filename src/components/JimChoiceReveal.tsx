@@ -1,5 +1,6 @@
 import { COPY } from '../data/projects'
 import ConfirmModal from './ConfirmModal'
+import JimPortrait from './JimPortrait'
 import PixelButton from './PixelButton'
 
 interface JimChoiceRevealProps {
@@ -21,6 +22,7 @@ export default function JimChoiceReveal({ onConfirm }: JimChoiceRevealProps) {
           </PixelButton>
         }
       >
+        <JimPortrait caption={COPY.revealPortraitCaption} className="jim-portrait--reveal" />
         <p className="reveal-body">{COPY.revealBody}</p>
       </ConfirmModal>
     </div>

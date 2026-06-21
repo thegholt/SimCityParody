@@ -575,6 +575,47 @@ p {
   max-width: 590px;
 }
 
+.jim-portrait {
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+.jim-portrait__sprite {
+  display: block;
+  margin-inline: auto;
+  width: min(180px, 42vw);
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 0 14px rgba(255, 59, 78, 0.55));
+}
+
+.jim-portrait__caption {
+  margin-top: 10px;
+  font-size: clamp(0.62rem, 1.4vw, 0.78rem);
+  color: #ffb8c0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.jim-portrait--reveal .jim-portrait__sprite {
+  width: min(220px, 48vw);
+  animation: jim-pop 0.55s steps(4) both;
+}
+
+.jim-portrait--results {
+  margin-bottom: 14px;
+}
+
+.jim-portrait--results .jim-portrait__sprite {
+  width: min(140px, 34vw);
+}
+
+.jim-portrait--results .jim-portrait__caption {
+  color: var(--bad);
+  font-size: 0.58rem;
+}
+
 .reveal-glitch .modal-actions {
   margin-top: 30px;
 }
@@ -657,6 +698,17 @@ p {
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes jim-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
