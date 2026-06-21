@@ -1,4 +1,5 @@
 import type { Project } from '../data/projects'
+import { SPRITE_BY_PROJECT } from '../data/sprites'
 import { formatMoney } from '../game/budget'
 import PixelButton from './PixelButton'
 
@@ -17,6 +18,7 @@ export default function ProjectCard({
   onToggle,
 }: ProjectCardProps) {
   const disabled = !funded && !affordable
+  const sprite = SPRITE_BY_PROJECT.get(project.id)
   return (
     <div
       className={`project-card${funded ? ' project-card--funded' : ''}`}
@@ -24,9 +26,18 @@ export default function ProjectCard({
       data-funded={funded}
     >
       <div className="project-card__head">
-        <span className="project-card__glyph" aria-hidden="true">
-          {project.glyph}
-        </span>
+        {sprite ? (
+          <img
+            className="project-card__sprite"
+            src={sprite.image}
+            alt=""
+            aria-hidden="true"
+          />
+        ) : (
+          <span className="project-card__glyph" aria-hidden="true">
+            {project.glyph}
+          </span>
+        )}
         <div>
           <h3 className="project-card__name">{project.name}</h3>
           <span className="project-card__cost">{formatMoney(project.cost)}</span>

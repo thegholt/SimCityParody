@@ -41,11 +41,16 @@ export default function App() {
 
   return (
     <div className={`app${phase === 'ending' ? ' app--divided' : ''}`}>
-      <TopBar spent={spent} remaining={remaining} />
+      <TopBar />
 
       <main className="layout">
         <section className="layout__map">
-          <CityMap funded={funded} divided={phase === 'ending'} />
+          <CityMap
+            funded={funded}
+            spent={spent}
+            remaining={remaining}
+            divided={phase === 'ending'}
+          />
         </section>
 
         <section className="layout__panel">
