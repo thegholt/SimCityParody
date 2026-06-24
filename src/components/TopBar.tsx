@@ -5,7 +5,7 @@ export default function TopBar() {
     <header className="topbar">
       <div className="topbar__brand">
         <span className="topbar__logo" aria-hidden="true">
-          🏛️
+          ✂️
         </span>
         <div className="topbar__titles">
           <span className="topbar__title">{COPY.appTitle}</span>
