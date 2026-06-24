@@ -12,7 +12,11 @@ export default function IntroModal({ onStart }: IntroModalProps) {
       title={COPY.introTitle}
       boxClassName="modal-box--intro"
       actions={
-        <PixelButton variant="primary" onClick={onStart}>
+        <PixelButton
+          variant="primary"
+          className="intro-start-button"
+          onClick={onStart}
+        >
           {COPY.introButton}
         </PixelButton>
       }

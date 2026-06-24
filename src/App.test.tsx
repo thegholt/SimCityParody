@@ -26,6 +26,9 @@ describe('<App /> — Option 4D: The Game flow', () => {
     ).toBeInTheDocument()
     expect(screen.getByText(COPY.introBody[1].text)).toBeInTheDocument()
     expect(screen.getByText(COPY.introCallout)).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: COPY.introButton }),
+    ).toBeInTheDocument()
     expect(screen.getByTestId('total-budget')).toHaveTextContent('£135.9M')
   })
 

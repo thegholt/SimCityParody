@@ -707,6 +707,10 @@ p {
   text-shadow: 2px 2px 0 #000;
 }
 
+.intro-start-button {
+  text-transform: none;
+}
+
 .reveal-body {
   color: #ffd2d6;
   font-size: 0.66rem;
