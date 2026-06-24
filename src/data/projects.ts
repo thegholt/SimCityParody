@@ -29,6 +29,11 @@ export interface Project {
   badValue: string
 }
 
+interface IntroBodyLine {
+  text: string
+  tone?: 'warn'
+}
+
 /** Total money on the table, in millions of pounds. */
 export const TOTAL_BUDGET = 135.9
 
@@ -117,18 +122,28 @@ export const BAD_ENDING_EXTRAS: ResultRow[] = [
 ]
 
 export const COPY = {
-  introTitle: 'Welcome to JimCity',
+  appTitle: 'Option 4D: The Game',
+  introTitle: 'There is £135.9M on the table.',
   introBody: [
-    'Your MP wants to spend £135.9M on a vanity project that would divide Dartford.',
-    'Your Conservative Councillors think this could fund healthcare, buses, the police, small businesses, pothole repairs, and finally the fixing of Galley Hill.',
-    'But Jim is backing Option 4D instead.',
-  ],
-  introButton: 'See What Dartford Could Have',
+    {
+      text: 'That could fix roads, improve buses, boost GP appointments, support small businesses, hire more police and finally fix Galley Hill.',
+    },
+    {
+      text: 'Instead, it’s being spent on Option 4D - a plan to split Dartford in two.',
+      tone: 'warn',
+    },
+    { text: "Dartford's Labour MP is in favour of this." },
+  ] satisfies IntroBodyLine[],
+  introCallout: 'See What Dartford Could Have.',
+  introButton: "Let's go!",
   budgetAllSelected:
     'You improved healthcare, buses, policing, roads, local businesses and Galley Hill — and still had £0.9M left.',
   budgetButton: "Now See Jim's Choice",
-  revealBody:
-    'Instead of all that, Jim is currently spending the whole £135.9M on Option 4D.',
+  revealBody: [
+    'Dartford could have had all of this for £135M.',
+    'Better healthcare. Better buses. More police. Potholes repaired. Small businesses supported. Galley Hill fixed.',
+    'But your Labour MP is backing Option 4D instead — a £135.9M plan that would divide Dartford and abolish Dartford Borough Council.',
+  ],
   revealButton: 'Spend It All on Option 4D',
   resultsPortraitCaption: 'Jim chose Option 4D.',
   splitOverlayMessage: 'Stop the Split, Stop Option 4D, Stop Jim.',

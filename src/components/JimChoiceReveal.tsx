@@ -21,7 +21,11 @@ export default function JimChoiceReveal({ onConfirm }: JimChoiceRevealProps) {
           </PixelButton>
         }
       >
-        <p className="reveal-body">{COPY.revealBody}</p>
+        <div className="reveal-body">
+          {COPY.revealBody.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
       </ConfirmModal>
     </div>
   )

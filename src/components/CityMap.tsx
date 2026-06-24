@@ -14,8 +14,6 @@ interface CityMapProps {
   showSpendOverlay?: boolean
 }
 
-const RESIDENT_COUNT = 12
-
 function spritePosition(x: number, y: number) {
   return {
     left: `${(x / MAP_WIDTH) * 100}%`,
@@ -30,11 +28,6 @@ export default function CityMap({
   divided = false,
   showSpendOverlay = true,
 }: CityMapProps) {
-  const fundedCount = Object.values(funded).filter(Boolean).length
-  const happyCount = divided
-    ? 0
-    : Math.round((fundedCount / 6) * RESIDENT_COUNT)
-
   return (
     <div
       className={`citymap${divided ? ' citymap--divided' : ''}`}
@@ -67,11 +60,16 @@ export default function CityMap({
                   active ? ' sprite-marker--active' : ' sprite-marker--inactive'
                 }${sprite.badEndingOnly ? ' sprite-marker--error' : ''}${
                   sprite.size === 'road' ? ' sprite-marker--road' : ''
+                }${
+                  sprite.labelPosition
+                    ? ` sprite-marker--label-${sprite.labelPosition}`
+                    : ''
                 }`}
                 style={spritePosition(sprite.x, sprite.y)}
                 data-sprite={sprite.spriteName}
                 data-project={sprite.projectId}
                 data-active={active}
+                data-label-position={sprite.labelPosition}
               >
                 <img
                   className="sprite-marker__image"
@@ -106,20 +104,6 @@ export default function CityMap({
           </div>
         ) : null}
       </div>
-
-      {!divided ? (
-        <div className="citymap__residents" aria-label="constituents mood">
-          {Array.from({ length: RESIDENT_COUNT }).map((_, i) => (
-            <span
-              key={i}
-              className={`resident${i < happyCount ? ' resident--happy' : ' resident--sad'}`}
-              aria-hidden="true"
-            >
-              {i < happyCount ? '🙂' : '😐'}
-            </span>
-          ))}
-        </div>
-      ) : null}
     </div>
   )
 }

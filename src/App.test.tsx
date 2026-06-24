@@ -17,19 +17,54 @@ function fundEveryProject() {
   }
 }
 
-describe('<App /> — JimCity flow', () => {
+describe('<App /> — Option 4D: The Game flow', () => {
   it('opens on the intro screen', () => {
     render(<App />)
+    expect(screen.getByText(COPY.appTitle)).toBeInTheDocument()
     expect(
       screen.getByRole('heading', { name: COPY.introTitle }),
     ).toBeInTheDocument()
+    expect(screen.getByText(COPY.introBody[1].text)).toBeInTheDocument()
+    expect(screen.getByText(COPY.introCallout)).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: COPY.introButton }),
+    ).toBeInTheDocument()
     expect(screen.getByTestId('total-budget')).toHaveTextContent('£135.9M')
+  })
+
+  it('locks background scrolling while the intro modal is open', () => {
+    render(<App />)
+    expect(document.body.style.overflow).toBe('hidden')
+    expect(document.body.style.position).toBe('fixed')
+    expect(document.body.style.top).toBe('0px')
+    expect(document.body.style.width).toBe('100%')
+    expect(document.documentElement.style.overflow).toBe('hidden')
+
+    fireEvent.click(screen.getByRole('button', { name: COPY.introButton }))
+
+    expect(document.body.style.overflow).toBe('')
+    expect(document.body.style.position).toBe('')
+    expect(document.body.style.top).toBe('')
+    expect(document.body.style.width).toBe('')
+    expect(document.documentElement.style.overflow).toBe('')
   })
 
   it('reveals project cards after starting', () => {
     startGame()
     expect(screen.getByTestId('project-healthcare')).toBeInTheDocument()
     expect(screen.getByTestId('project-galleyHill')).toBeInTheDocument()
+    expect(screen.queryByLabelText('constituents mood')).not.toBeInTheDocument()
+
+    const map = screen.getByTestId('city-map')
+    expect(
+      map.querySelector('[data-sprite="pixel_art_police_station_building"]'),
+    ).toHaveAttribute('data-label-position', 'above')
+    expect(
+      map.querySelector('[data-sprite="damaged_crater_with_rubble_patch"]'),
+    ).toHaveAttribute('data-label-position', 'above')
+    expect(
+      map.querySelector('[data-sprite="collapsed_road_with_warning_sign"]'),
+    ).toHaveAttribute('data-label-position', 'below-raised')
   })
 
   it('updates the budget when a project is funded', () => {
@@ -56,6 +91,9 @@ describe('<App /> — JimCity flow', () => {
 
     fireEvent.click(screen.getByRole('button', { name: COPY.budgetButton }))
     expect(screen.getByTestId('jim-reveal')).toBeInTheDocument()
+    for (const line of COPY.revealBody) {
+      expect(screen.getByText(line)).toBeInTheDocument()
+    }
 
     fireEvent.click(screen.getByRole('button', { name: COPY.revealButton }))
 

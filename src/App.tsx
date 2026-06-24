@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useLayoutEffect, useMemo, useState } from 'react'
 import CityMap from './components/CityMap'
 import IntroModal from './components/IntroModal'
 import JimChoiceReveal from './components/JimChoiceReveal'
@@ -21,6 +21,39 @@ import {
 export default function App() {
   const [phase, setPhase] = useState<Phase>('intro')
   const [funded, setFunded] = useState<FundedMap>(() => emptyFunded())
+  const modalOpen = phase === 'intro' || phase === 'reveal'
+
+  useLayoutEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+
+    const { body, documentElement } = document
+    const previousBodyOverflow = body.style.overflow
+    const previousBodyPosition = body.style.position
+    const previousBodyTop = body.style.top
+    const previousBodyWidth = body.style.width
+    const previousRootOverflow = documentElement.style.overflow
+
+    window.scrollTo({ left: 0, top: 0 })
+
+    // Keep focus/scroll attempts inside fixed modals from moving the page behind them.
+    if (modalOpen) {
+      body.style.overflow = 'hidden'
+      body.style.position = 'fixed'
+      body.style.top = '0'
+      body.style.width = '100%'
+      documentElement.style.overflow = 'hidden'
+    }
+
+    return () => {
+      body.style.overflow = previousBodyOverflow
+      body.style.position = previousBodyPosition
+      body.style.top = previousBodyTop
+      body.style.width = previousBodyWidth
+      documentElement.style.overflow = previousRootOverflow
+    }
+  }, [modalOpen])
 
   const spent = useMemo(() => spentOf(funded), [funded])
   const remaining = useMemo(() => remainingOf(funded), [funded])
