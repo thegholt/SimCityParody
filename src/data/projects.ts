@@ -140,7 +140,7 @@ export const COPY = {
     'You improved healthcare, buses, policing, roads, local businesses and Galley Hill — and still had £0.9M left.',
   budgetButton: "Now See Jim's Choice",
   revealBody:
-    'Instead of all that, Jim is currently spending the whole £135.9M on Option 4D.',
+    'With all of these options available, your Labour MP has chosen to support Option 4D, a plan to abolish Dartford Council, and divide the borough in half along the A2',
   revealButton: 'Spend It All on Option 4D',
   resultsPortraitCaption: 'Jim chose Option 4D.',
   splitOverlayMessage: 'Stop the Split, Stop Option 4D, Stop Jim.',

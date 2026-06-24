@@ -91,6 +91,7 @@ describe('<App /> — Option 4D: The Game flow', () => {
 
     fireEvent.click(screen.getByRole('button', { name: COPY.budgetButton }))
     expect(screen.getByTestId('jim-reveal')).toBeInTheDocument()
+    expect(screen.getByText(COPY.revealBody)).toBeInTheDocument()
 
     fireEvent.click(screen.getByRole('button', { name: COPY.revealButton }))
 
