@@ -37,7 +37,7 @@ export interface SpriteEntry {
 const SPRITE_OVERRIDES: Partial<
   Record<
     string,
-    Pick<SpriteEntry, 'mapLabel' | 'x' | 'y' | 'size' | 'labelPosition'>
+    Partial<Pick<SpriteEntry, 'mapLabel' | 'x' | 'y' | 'size' | 'labelPosition'>>
   >
 > = {
   collapsed_road_with_warning_sign: {
