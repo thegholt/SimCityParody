@@ -397,20 +397,6 @@ p {
   }
 }
 
-/* Residents */
-.citymap__residents {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  justify-content: center;
-  margin-top: 10px;
-  font-size: 1.1rem;
-}
-
-.resident--happy {
-  filter: drop-shadow(0 0 3px rgba(70, 227, 107, 0.7));
-}
-
 /* Divided / Option 4D state */
 .citymap--divided .citymap__background {
   filter: brightness(0.45) saturate(0.35) contrast(1.3);

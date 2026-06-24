@@ -53,6 +53,7 @@ describe('<App /> — Option 4D: The Game flow', () => {
     startGame()
     expect(screen.getByTestId('project-healthcare')).toBeInTheDocument()
     expect(screen.getByTestId('project-galleyHill')).toBeInTheDocument()
+    expect(screen.queryByLabelText('constituents mood')).not.toBeInTheDocument()
   })
 
   it('updates the budget when a project is funded', () => {
