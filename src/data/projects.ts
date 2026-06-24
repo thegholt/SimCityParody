@@ -135,7 +135,7 @@ export const COPY = {
     { text: "Dartford's Labour MP is in favour of this." },
   ] satisfies IntroBodyLine[],
   introCallout: 'See What Dartford Could Have.',
-  introButton: 'See What Dartford Could Have',
+  introButton: "Let's go!",
   budgetAllSelected:
     'You improved healthcare, buses, policing, roads, local businesses and Galley Hill — and still had £0.9M left.',
   budgetButton: "Now See Jim's Choice",
