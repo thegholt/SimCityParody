@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useLayoutEffect, useMemo, useState } from 'react'
 import CityMap from './components/CityMap'
 import IntroModal from './components/IntroModal'
 import JimChoiceReveal from './components/JimChoiceReveal'
@@ -21,6 +21,13 @@ import {
 export default function App() {
   const [phase, setPhase] = useState<Phase>('intro')
   const [funded, setFunded] = useState<FundedMap>(() => emptyFunded())
+
+  useLayoutEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+    window.scrollTo({ left: 0, top: 0 })
+  }, [])
 
   const spent = useMemo(() => spentOf(funded), [funded])
   const remaining = useMemo(() => remainingOf(funded), [funded])
