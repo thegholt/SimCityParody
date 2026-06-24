@@ -343,6 +343,23 @@ p {
   text-shadow: 1px 1px 0 #000;
 }
 
+.sprite-marker--label-above .sprite-marker__label,
+.sprite-marker--label-below-close .sprite-marker__label {
+  position: absolute;
+  left: 50%;
+  z-index: 2;
+  margin-top: 0;
+  transform: translateX(-50%);
+}
+
+.sprite-marker--label-above .sprite-marker__label {
+  bottom: calc(100% + 2px);
+}
+
+.sprite-marker--label-below-close .sprite-marker__label {
+  top: calc(100% - 4px);
+}
+
 .sprite-marker--active .sprite-marker__label {
   color: var(--good);
   border-color: var(--good-dim);

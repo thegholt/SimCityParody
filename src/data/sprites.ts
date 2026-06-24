@@ -30,16 +30,28 @@ export interface SpriteEntry {
   mapLabel?: string
   /** Compact sizing for road-level markers. */
   size?: 'road'
+  /** Override the default label position relative to the sprite image. */
+  labelPosition?: 'above' | 'below-close'
 }
 
 const SPRITE_OVERRIDES: Partial<
-  Record<string, Pick<SpriteEntry, 'mapLabel' | 'x' | 'y' | 'size'>>
+  Record<
+    string,
+    Pick<SpriteEntry, 'mapLabel' | 'x' | 'y' | 'size' | 'labelPosition'>
+  >
 > = {
+  collapsed_road_with_warning_sign: {
+    labelPosition: 'below-close',
+  },
   damaged_crater_with_rubble_patch: {
     mapLabel: 'Pothole',
     x: 528,
     y: 600,
     size: 'road',
+    labelPosition: 'above',
+  },
+  pixel_art_police_station_building: {
+    labelPosition: 'above',
   },
 }
 
@@ -76,6 +88,7 @@ export const SPRITES: SpriteEntry[] = spritePositions.sprites.map((entry) => {
     badEndingOnly: entry.sprite_name === 'pixelated_fortress_with_error_sign',
     mapLabel: override?.mapLabel,
     size: override?.size,
+    labelPosition: override?.labelPosition,
   }
 })
 

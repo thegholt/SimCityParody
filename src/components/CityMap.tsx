@@ -60,11 +60,16 @@ export default function CityMap({
                   active ? ' sprite-marker--active' : ' sprite-marker--inactive'
                 }${sprite.badEndingOnly ? ' sprite-marker--error' : ''}${
                   sprite.size === 'road' ? ' sprite-marker--road' : ''
+                }${
+                  sprite.labelPosition
+                    ? ` sprite-marker--label-${sprite.labelPosition}`
+                    : ''
                 }`}
                 style={spritePosition(sprite.x, sprite.y)}
                 data-sprite={sprite.spriteName}
                 data-project={sprite.projectId}
                 data-active={active}
+                data-label-position={sprite.labelPosition}
               >
                 <img
                   className="sprite-marker__image"

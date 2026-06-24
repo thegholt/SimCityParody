@@ -54,6 +54,17 @@ describe('<App /> — Option 4D: The Game flow', () => {
     expect(screen.getByTestId('project-healthcare')).toBeInTheDocument()
     expect(screen.getByTestId('project-galleyHill')).toBeInTheDocument()
     expect(screen.queryByLabelText('constituents mood')).not.toBeInTheDocument()
+
+    const map = screen.getByTestId('city-map')
+    expect(
+      map.querySelector('[data-sprite="pixel_art_police_station_building"]'),
+    ).toHaveAttribute('data-label-position', 'above')
+    expect(
+      map.querySelector('[data-sprite="damaged_crater_with_rubble_patch"]'),
+    ).toHaveAttribute('data-label-position', 'above')
+    expect(
+      map.querySelector('[data-sprite="collapsed_road_with_warning_sign"]'),
+    ).toHaveAttribute('data-label-position', 'below-close')
   })
 
   it('updates the budget when a project is funded', () => {
