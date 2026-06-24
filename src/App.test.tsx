@@ -29,6 +29,23 @@ describe('<App /> — Option 4D: The Game flow', () => {
     expect(screen.getByTestId('total-budget')).toHaveTextContent('£135.9M')
   })
 
+  it('locks background scrolling while the intro modal is open', () => {
+    render(<App />)
+    expect(document.body.style.overflow).toBe('hidden')
+    expect(document.body.style.position).toBe('fixed')
+    expect(document.body.style.top).toBe('0px')
+    expect(document.body.style.width).toBe('100%')
+    expect(document.documentElement.style.overflow).toBe('hidden')
+
+    fireEvent.click(screen.getByRole('button', { name: COPY.introButton }))
+
+    expect(document.body.style.overflow).toBe('')
+    expect(document.body.style.position).toBe('')
+    expect(document.body.style.top).toBe('')
+    expect(document.body.style.width).toBe('')
+    expect(document.documentElement.style.overflow).toBe('')
+  })
+
   it('reveals project cards after starting', () => {
     startGame()
     expect(screen.getByTestId('project-healthcare')).toBeInTheDocument()
