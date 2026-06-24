@@ -17,14 +17,15 @@ export default function IntroModal({ onStart }: IntroModalProps) {
         </PixelButton>
       }
     >
-      {COPY.introBody.map((line, i) => (
+      {COPY.introBody.map((line) => (
         <p
-          key={i}
-          className={i === COPY.introBody.length - 1 ? 'intro-warn' : undefined}
+          key={line.text}
+          className={line.tone === 'warn' ? 'intro-warn' : undefined}
         >
-          {line}
+          {line.text}
         </p>
       ))}
+      <p className="intro-callout">{COPY.introCallout}</p>
     </ConfirmModal>
   )
 }

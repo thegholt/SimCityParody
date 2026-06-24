@@ -23,6 +23,8 @@ describe('<App /> — JimCity flow', () => {
     expect(
       screen.getByRole('heading', { name: COPY.introTitle }),
     ).toBeInTheDocument()
+    expect(screen.getByText(COPY.introBody[1].text)).toBeInTheDocument()
+    expect(screen.getByText(COPY.introCallout)).toBeInTheDocument()
     expect(screen.getByTestId('total-budget')).toHaveTextContent('£135.9M')
   })
 
