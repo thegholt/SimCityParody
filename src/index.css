@@ -144,8 +144,9 @@ p {
 }
 
 .topbar__title {
-  font-size: 1.1rem;
+  font-size: clamp(0.82rem, 2.5vw, 1.1rem);
   color: var(--budget);
+  line-height: 1.35;
   text-shadow: 2px 2px 0 #000;
 }
 
@@ -161,7 +162,7 @@ p {
 
 @media (max-width: 899px) {
   .topbar__title {
-    display: none;
+    font-size: clamp(0.64rem, 3.4vw, 0.9rem);
   }
 
   .topbar__tagline--full {

@@ -1,3 +1,5 @@
+import { COPY } from '../data/projects'
+
 export default function TopBar() {
   return (
     <header className="topbar">
@@ -6,7 +8,7 @@ export default function TopBar() {
           🏛️
         </span>
         <div className="topbar__titles">
-          <span className="topbar__title">JimCity</span>
+          <span className="topbar__title">{COPY.appTitle}</span>
           <span className="topbar__tagline topbar__tagline--full">
             Your Labour MP's budget for Dartford
           </span>

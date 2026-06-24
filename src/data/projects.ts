@@ -122,6 +122,7 @@ export const BAD_ENDING_EXTRAS: ResultRow[] = [
 ]
 
 export const COPY = {
+  appTitle: 'Option 4D: The Game',
   introTitle: 'There is £135.9M on the table.',
   introBody: [
     {

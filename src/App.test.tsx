@@ -17,9 +17,10 @@ function fundEveryProject() {
   }
 }
 
-describe('<App /> — JimCity flow', () => {
+describe('<App /> — Option 4D: The Game flow', () => {
   it('opens on the intro screen', () => {
     render(<App />)
+    expect(screen.getByText(COPY.appTitle)).toBeInTheDocument()
     expect(
       screen.getByRole('heading', { name: COPY.introTitle }),
     ).toBeInTheDocument()
