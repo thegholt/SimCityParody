@@ -64,7 +64,7 @@ describe('<App /> — Option 4D: The Game flow', () => {
     ).toHaveAttribute('data-label-position', 'above')
     expect(
       map.querySelector('[data-sprite="collapsed_road_with_warning_sign"]'),
-    ).toHaveAttribute('data-label-position', 'below-close')
+    ).toHaveAttribute('data-label-position', 'below-raised')
   })
 
   it('updates the budget when a project is funded', () => {

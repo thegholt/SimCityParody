@@ -344,7 +344,7 @@ p {
 }
 
 .sprite-marker--label-above .sprite-marker__label,
-.sprite-marker--label-below-close .sprite-marker__label {
+.sprite-marker--label-below-raised .sprite-marker__label {
   position: absolute;
   left: 50%;
   z-index: 2;
@@ -356,8 +356,8 @@ p {
   bottom: calc(100% + 2px);
 }
 
-.sprite-marker--label-below-close .sprite-marker__label {
-  top: calc(100% - 4px);
+.sprite-marker--label-below-raised .sprite-marker__label {
+  top: calc(100% - 24px);
 }
 
 .sprite-marker--active .sprite-marker__label {

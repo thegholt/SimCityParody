@@ -31,7 +31,7 @@ export interface SpriteEntry {
   /** Compact sizing for road-level markers. */
   size?: 'road'
   /** Override the default label position relative to the sprite image. */
-  labelPosition?: 'above' | 'below-close'
+  labelPosition?: 'above' | 'below-raised'
 }
 
 const SPRITE_OVERRIDES: Partial<
@@ -41,7 +41,8 @@ const SPRITE_OVERRIDES: Partial<
   >
 > = {
   collapsed_road_with_warning_sign: {
-    labelPosition: 'below-close',
+    mapLabel: 'Galley Hill',
+    labelPosition: 'below-raised',
   },
   damaged_crater_with_rubble_patch: {
     mapLabel: 'Pothole',
