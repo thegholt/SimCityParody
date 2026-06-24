@@ -4,15 +4,10 @@ import {
   PROJECTS,
   REJECT_URL,
 } from '../data/projects'
-import PixelButton from './PixelButton'
 
-interface ResultsScreenProps {
-  onPlayAgain: () => void
-}
-
-export default function ResultsScreen({ onPlayAgain }: ResultsScreenProps) {
+export default function ResultsScreen() {
   const rows = [
-    ...PROJECTS.map((p) => ({
+    ...PROJECTS.filter((p) => p.id !== 'galleyHill').map((p) => ({
       label: p.resultLabel,
       value: p.badValue,
       bad: true,
@@ -40,11 +35,8 @@ export default function ResultsScreen({ onPlayAgain }: ResultsScreenProps) {
       </p>
 
       <div className="results__actions">
-        <PixelButton variant="ghost" onClick={onPlayAgain}>
-          {COPY.playAgain}
-        </PixelButton>
         <a
-          className="pixel-btn pixel-btn--danger"
+          className="pixel-btn pixel-btn--danger results__cta"
           href={REJECT_URL}
           target="_blank"
           rel="noreferrer"

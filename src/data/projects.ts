@@ -119,8 +119,8 @@ export const BAD_ENDING_EXTRAS: ResultRow[] = [
 export const COPY = {
   introTitle: 'Welcome to JimCity',
   introBody: [
-    'Dartford has £135.9M on the table.',
-    'This could fund healthcare, buses, police, small businesses, pothole repairs and Galley Hill.',
+    'Your MP wants to spend £135.9M on a vanity project that would divide Dartford.',
+    'Your Conservative Councillors think this could fund healthcare, buses, the police, small businesses, pothole repairs, and finally the fixing of Galley Hill.',
     'But Jim is backing Option 4D instead.',
   ],
   introButton: 'See What Dartford Could Have',
@@ -134,8 +134,7 @@ export const COPY = {
   splitOverlayMessage: 'Stop the Split, Stop Option 4D, Stop Jim.',
   splitOverlayCallToAction: 'Save Dartford',
   endingMessage: '£135.9M spent. Dartford divided. Nothing fixed.',
-  playAgain: 'Play Again',
-  rejectButton: 'Tell Jim: Reject Option 4D',
+  rejectButton: 'Say No: Sign our Petition',
 }
 
 /** Where to point the "Tell Jim" call to action. */

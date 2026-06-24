@@ -1,19 +1,21 @@
 @import '@fontsource/press-start-2p/index.css';
 
 :root {
-  /* Palette */
-  --navy-900: #0a0f2c;
-  --navy-800: #111a3d;
-  --navy-700: #1b2657;
-  --navy-600: #24316b;
-  --ink: #e8ecff;
-  --muted: #9fb0e8;
-  --budget: #ffce3a;
-  --budget-dim: #f5a623;
-  --good: #46e36b;
-  --good-dim: #1f9d4d;
+  /* Palette — earthy greens and sky blues from the sprite map */
+  --navy-900: #0c1a12;
+  --navy-800: #14261a;
+  --navy-700: #1c3a24;
+  --navy-600: #2a5234;
+  --ink: #f4f8e8;
+  --muted: #a8c89a;
+  --budget: #ffd84d;
+  --budget-dim: #e8b020;
+  --good: #5ce878;
+  --good-dim: #2a9e48;
   --bad: #ff3b4e;
   --bad-dim: #b3122a;
+  --sky: #5eb8e8;
+  --forest: #3d8f4a;
 
   --pixel: 'Press Start 2P', 'Courier New', monospace;
 
@@ -34,7 +36,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 50% -10%, var(--navy-700), var(--navy-900) 70%);
+    radial-gradient(ellipse at 50% 0%, #2a6a3a 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 100%, #1a4a6a 0%, transparent 45%),
+    linear-gradient(180deg, #0c1a12 0%, #081008 100%);
   line-height: 1.5;
 }
 
@@ -101,8 +105,8 @@ p {
 /* ---------- App shell ---------- */
 .app {
   min-height: 100vh;
-  padding: 16px;
-  max-width: 1080px;
+  padding: 12px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -113,24 +117,30 @@ p {
 /* ---------- Top bar ---------- */
 .topbar {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px 24px;
   align-items: center;
-  justify-content: space-between;
-  background: var(--navy-800);
+  justify-content: center;
+  background: linear-gradient(180deg, var(--navy-700) 0%, var(--navy-800) 100%);
   border: 4px solid #000;
-  box-shadow: inset 0 0 0 2px var(--navy-600);
-  padding: 12px 16px;
+  box-shadow:
+    inset 0 0 0 2px var(--forest),
+    0 4px 0 0 #000;
+  padding: 10px 16px;
 }
 
 .topbar__brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .topbar__logo {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+}
+
+.topbar__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .topbar__title {
@@ -139,9 +149,34 @@ p {
   text-shadow: 2px 2px 0 #000;
 }
 
-.topbar__budget {
-  flex: 1 1 260px;
-  min-width: 220px;
+.topbar__tagline {
+  font-size: 0.45rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.topbar__tagline--mobile {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  .topbar__title {
+    display: none;
+  }
+
+  .topbar__tagline--full {
+    display: none;
+  }
+
+  .topbar__tagline--mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 0.52rem;
+    line-height: 1.5;
+    color: var(--budget);
+    text-align: left;
+  }
 }
 
 .budget-line {
@@ -194,18 +229,19 @@ p {
 .layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
-  margin-top: 16px;
+  gap: 14px;
+  margin-top: 12px;
 }
 
 .layout__map {
   position: relative;
 }
 
-@media (min-width: 860px) {
+@media (min-width: 900px) {
   .layout {
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 1.2fr 0.8fr;
     align-items: start;
+    gap: 18px;
   }
 }
 
@@ -222,106 +258,140 @@ p {
 
 /* ---------- City map ---------- */
 .citymap {
-  background: var(--navy-800);
+  background: #000;
   border: 4px solid #000;
-  box-shadow: inset 0 0 0 2px var(--navy-600);
-  padding: 10px;
+  box-shadow:
+    inset 0 0 0 2px var(--forest),
+    6px 6px 0 0 #000;
+  padding: 6px;
 }
 
 .citymap__frame {
   position: relative;
-}
-
-.citymap__grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 3px;
-  background: #000;
+  overflow: hidden;
   border: 2px solid #000;
 }
 
-.map-cell {
-  aspect-ratio: 1 / 1;
+.citymap__background {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.citymap__sprites {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sprite-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  font-size: clamp(0.7rem, 3.4vw, 1.5rem);
+  transition: filter 0.2s steps(4);
 }
 
-.map-cell--grass {
-  background: repeating-linear-gradient(
-    45deg,
-    #2f7d3f 0,
-    #2f7d3f 6px,
-    #2a7038 6px,
-    #2a7038 12px
-  );
+.sprite-marker__image {
+  display: block;
+  width: clamp(48px, 12vw, 120px);
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(2px 2px 0 #000);
+  background: transparent;
 }
 
-.map-cell--road {
-  background: #3a3f52;
+.sprite-marker--inactive .sprite-marker__image {
+  filter: grayscale(0.85) brightness(0.55) drop-shadow(2px 2px 0 #000);
 }
 
-.map-cell--river {
-  background: repeating-linear-gradient(
-    90deg,
-    #1f6fb0 0,
-    #1f6fb0 6px,
-    #1a5e96 6px,
-    #1a5e96 12px
-  );
+.sprite-marker--active .sprite-marker__image {
+  filter: drop-shadow(0 0 8px rgba(92, 232, 120, 0.9)) drop-shadow(3px 3px 0 #000);
+  animation: pop-in 0.3s steps(4) 1;
 }
 
-.map-cell--pothole {
-  background: #2c2030;
+.sprite-marker--error .sprite-marker__image {
+  width: clamp(64px, 16vw, 150px);
+  filter: drop-shadow(0 0 12px rgba(255, 59, 78, 0.9)) drop-shadow(4px 4px 0 #000);
+  animation: flicker 0.5s steps(2) infinite;
 }
 
-.map-cell__pothole {
-  filter: saturate(0.6);
+.sprite-marker--road .sprite-marker__image {
+  width: clamp(22px, 5.5vw, 50px);
 }
 
-.map-cell--facility {
-  background: #20264a;
-  outline: 1px solid #000;
+.sprite-marker--road .sprite-marker__label {
+  font-size: clamp(0.24rem, 0.75vw, 0.36rem);
+  padding: 1px 3px;
 }
 
-.map-cell--facility .map-cell__label {
-  font-size: 0.42rem;
-  color: var(--muted);
-  text-align: center;
+.sprite-marker__label {
   margin-top: 2px;
-  line-height: 1.2;
+  padding: 2px 4px;
+  font-size: clamp(0.28rem, 0.9vw, 0.42rem);
+  color: var(--ink);
+  background: rgba(8, 16, 8, 0.82);
+  border: 2px solid #000;
+  white-space: nowrap;
+  text-shadow: 1px 1px 0 #000;
 }
 
-.map-cell--facility .map-cell__glyph {
-  filter: grayscale(1) brightness(0.6);
-}
-
-.map-cell--facility.is-active {
-  background: #123a22;
-  box-shadow: inset 0 0 0 2px var(--good);
-  animation: pop-in 0.25s steps(3) 1;
-}
-
-.map-cell--facility.is-active .map-cell__glyph {
-  filter: none;
-  text-shadow: 0 0 6px rgba(70, 227, 107, 0.8);
-}
-
-.map-cell--facility.is-active .map-cell__label {
+.sprite-marker--active .sprite-marker__label {
   color: var(--good);
+  border-color: var(--good-dim);
 }
 
-.map-cell__status {
-  font-size: 0.4rem;
-  margin-top: 2px;
-  color: var(--bad);
+/* Spend overlay on the map */
+.spend-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 8px;
+  pointer-events: none;
 }
 
-.is-active .map-cell__status {
-  color: var(--budget);
+.spend-overlay__inner {
+  background: rgba(8, 16, 8, 0.88);
+  border: 3px solid #000;
+  box-shadow:
+    inset 0 0 0 2px var(--forest),
+    4px 4px 0 0 #000;
+  padding: 10px 12px;
+  backdrop-filter: blur(2px);
+}
+
+/* Sticky budget bar (mobile) */
+.sticky-budget {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 15;
+  padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(180deg, transparent 0%, rgba(8, 16, 8, 0.92) 24%);
+  pointer-events: none;
+}
+
+.sticky-budget__inner {
+  background: var(--navy-800);
+  border: 3px solid #000;
+  box-shadow:
+    inset 0 0 0 2px var(--forest),
+    0 -4px 0 0 #000;
+  padding: 10px 12px;
+  pointer-events: auto;
+}
+
+@media (max-width: 899px) {
+  .app:not(.app--divided) {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 /* Residents */
@@ -339,9 +409,13 @@ p {
 }
 
 /* Divided / Option 4D state */
-.citymap--divided .citymap__grid {
-  filter: brightness(0.5) saturate(0.4) contrast(1.3);
+.citymap--divided .citymap__background {
+  filter: brightness(0.45) saturate(0.35) contrast(1.3);
   animation: glitch 0.5s steps(2) infinite;
+}
+
+.citymap--divided .sprite-marker:not(.sprite-marker--error) .sprite-marker__image {
+  filter: grayscale(1) brightness(0.4) drop-shadow(2px 2px 0 #000);
 }
 
 .citymap__split-art {
@@ -407,9 +481,11 @@ p {
 }
 
 .project-card {
-  background: var(--navy-800);
+  background: linear-gradient(180deg, var(--navy-700) 0%, var(--navy-800) 100%);
   border: 3px solid #000;
-  box-shadow: inset 0 0 0 2px var(--navy-600);
+  box-shadow:
+    inset 0 0 0 2px var(--navy-600),
+    3px 3px 0 0 #000;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -417,14 +493,52 @@ p {
 }
 
 .project-card--funded {
-  box-shadow: inset 0 0 0 2px var(--good-dim);
-  background: #0f2a1b;
+  box-shadow:
+    inset 0 0 0 2px var(--good-dim),
+    3px 3px 0 0 #000;
+  background: linear-gradient(180deg, #123a22 0%, #0f2a1b 100%);
 }
 
 .project-card__head {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.project-card__title-block {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-card__expand {
+  font-size: 0.55rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.project-card__sprite {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  object-position: center;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(2px 2px 0 #000);
+  flex-shrink: 0;
+  background: transparent;
+}
+
+.project-card--funded .project-card__sprite {
+  filter: drop-shadow(0 0 6px rgba(92, 232, 120, 0.7)) drop-shadow(2px 2px 0 #000);
 }
 
 .project-card__glyph {
@@ -462,6 +576,33 @@ p {
 .project-card .pixel-btn {
   font-size: 0.6rem;
   padding: 10px;
+}
+
+@media (max-width: 899px) {
+  .project-card__expand {
+    display: inline-block;
+  }
+
+  .project-card:not(.project-card--expanded) .project-card__blurb {
+    display: none;
+  }
+
+  .project-card .pixel-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.62rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .project-card__head {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .project-card__expand {
+    display: none;
+  }
 }
 
 /* ---------- All funded banner ---------- */
@@ -691,33 +832,33 @@ p {
 /* ---------- Results ---------- */
 .results {
   background: var(--navy-800);
-  border: 4px solid var(--bad);
+  border: 3px solid var(--bad);
   box-shadow: inset 0 0 0 2px var(--bad-dim);
-  padding: 18px;
+  padding: 12px;
 }
 
 .results__title {
-  font-size: 0.9rem;
+  font-size: 0.72rem;
   color: var(--bad);
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   text-shadow: 2px 2px 0 #000;
 }
 
 .results__grid {
   margin: 0;
   display: grid;
-  gap: 6px;
+  gap: 4px;
 }
 
 .results__row {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
   background: var(--navy-900);
   border: 2px solid #000;
-  padding: 8px 10px;
-  font-size: 0.56rem;
+  padding: 5px 8px;
+  font-size: 0.48rem;
 }
 
 .results__row dt {
@@ -733,19 +874,24 @@ p {
 }
 
 .results__message {
-  margin-top: 16px;
+  margin-top: 10px;
   text-align: center;
-  font-size: 0.7rem;
+  font-size: 0.58rem;
   color: var(--bad);
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
 .results__actions {
-  margin-top: 16px;
+  margin-top: 12px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
   justify-content: center;
+}
+
+.results__cta {
+  width: 100%;
+  font-size: 0.58rem;
+  padding: 12px 10px;
+  line-height: 1.5;
 }
 
 /* ---------- Animations ---------- */
@@ -824,13 +970,82 @@ p {
   }
 }
 
+@media (max-width: 400px) {
+  .app {
+    padding: 6px;
+  }
+
+  .app:not(.app--divided) {
+    padding-bottom: calc(82px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .topbar {
+    padding: 8px 10px;
+    border-width: 3px;
+  }
+
+  .topbar__logo {
+    font-size: 1.3rem;
+  }
+
+  .layout {
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .citymap {
+    padding: 4px;
+    border-width: 3px;
+    box-shadow:
+      inset 0 0 0 2px var(--forest),
+      4px 4px 0 0 #000;
+  }
+
+  .citymap__frame {
+    border-width: 1px;
+  }
+
+  .project-card {
+    padding: 8px;
+    border-width: 2px;
+    gap: 6px;
+  }
+
+  .project-card__sprite {
+    width: 44px;
+    height: 44px;
+  }
+
+  .sticky-budget {
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sticky-budget__inner {
+    padding: 8px 10px;
+    border-width: 2px;
+  }
+
+  .modal-overlay {
+    padding: 10px;
+  }
+
+  .modal-box {
+    padding: 16px;
+    border-width: 3px;
+    box-shadow:
+      inset 0 0 0 2px var(--navy-600),
+      6px 6px 0 0 #000;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .app--divided,
   .reveal-glitch .modal-box,
-  .citymap--divided .citymap__grid,
+  .citymap--divided .citymap__background,
   .citymap__split-image,
   .modal-box--danger .modal-title,
-  .map-cell--facility.is-active {
+  .sprite-marker--active,
+  .sprite-marker--error {
     animation: none !important;
   }
 }

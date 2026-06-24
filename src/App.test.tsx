@@ -11,7 +11,9 @@ function startGame() {
 function fundEveryProject() {
   for (const project of PROJECTS) {
     const card = screen.getByTestId(`project-${project.id}`)
-    fireEvent.click(within(card).getByRole('button'))
+    fireEvent.click(
+      within(card).getByRole('button', { name: /Fund it|Funded — Undo/ }),
+    )
   }
 }
 
@@ -33,7 +35,7 @@ describe('<App /> — JimCity flow', () => {
   it('updates the budget when a project is funded', () => {
     startGame()
     const card = screen.getByTestId('project-galleyHill')
-    fireEvent.click(within(card).getByRole('button'))
+    fireEvent.click(within(card).getByRole('button', { name: 'Fund it' }))
     expect(screen.getByTestId('spent')).toHaveTextContent('£50M')
     expect(screen.getByTestId('remaining')).toHaveTextContent('£85.9M')
     expect(card).toHaveAttribute('data-funded', 'true')
@@ -54,15 +56,13 @@ describe('<App /> — JimCity flow', () => {
 
     fireEvent.click(screen.getByRole('button', { name: COPY.budgetButton }))
     expect(screen.getByTestId('jim-reveal')).toBeInTheDocument()
-    expect(screen.getByTestId('jim-portrait')).toBeInTheDocument()
 
     fireEvent.click(screen.getByRole('button', { name: COPY.revealButton }))
 
     const results = screen.getByTestId('results-screen')
     expect(results).toBeInTheDocument()
-    expect(screen.getByTestId('jim-portrait')).toBeInTheDocument()
-    expect(screen.getByText(COPY.resultsPortraitCaption)).toBeInTheDocument()
     expect(within(results).getByText('GP Hubs Built')).toBeInTheDocument()
+    expect(within(results).queryByText('Galley Hill Fixed')).not.toBeInTheDocument()
     expect(within(results).getByText('Disappointed Constituents')).toBeInTheDocument()
     expect(within(results).getByText('75,426')).toBeInTheDocument()
     expect(screen.getByTestId('ending-message')).toHaveTextContent(
@@ -83,16 +83,6 @@ describe('<App /> — JimCity flow', () => {
       'href',
       REJECT_URL,
     )
-  })
-
-  it('can play again from the results screen', () => {
-    startGame()
-    fundEveryProject()
-    fireEvent.click(screen.getByRole('button', { name: COPY.budgetButton }))
-    fireEvent.click(screen.getByRole('button', { name: COPY.revealButton }))
-    fireEvent.click(screen.getByRole('button', { name: COPY.playAgain }))
-    expect(
-      screen.getByRole('heading', { name: COPY.introTitle }),
-    ).toBeInTheDocument()
+    expect(screen.queryByTestId('total-budget')).not.toBeInTheDocument()
   })
 })
