@@ -135,6 +135,7 @@ p {
 
 .topbar__logo {
   font-size: 1.6rem;
+  padding-top: 3px;
 }
 
 .topbar__titles {
@@ -148,6 +149,7 @@ p {
   font-size: clamp(0.82rem, 2.5vw, 1.1rem);
   color: var(--budget);
   line-height: 1.75;
+  padding-top: 3px;
   text-shadow: 2px 2px 0 #000;
 }
 
