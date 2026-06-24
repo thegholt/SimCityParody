@@ -27,7 +27,10 @@ export default function App() {
       window.history.scrollRestoration = 'manual'
     }
     window.scrollTo({ left: 0, top: 0 })
-  }, [])
+    const resetId = window.setTimeout(() => window.scrollTo({ left: 0, top: 0 }))
+
+    return () => window.clearTimeout(resetId)
+  }, [phase])
 
   const spent = useMemo(() => spentOf(funded), [funded])
   const remaining = useMemo(() => remainingOf(funded), [funded])
